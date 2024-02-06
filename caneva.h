@@ -4,17 +4,17 @@
 #define CANEVAS_H
 
 #include <iostream>
-#include "couche.h"
+#include "layer.h"
 
 const int MAX_COUCHES = 5;
 
 using namespace std;
 
-class Canevas
+class Caneva
 {
 public:
-	Canevas();
-	~Canevas();
+	Caneva();
+	~Caneva();
 
 	bool reset();
 	bool resetLayer(int index);
@@ -29,25 +29,25 @@ public:
 	bool translate(int deltaX, int deltaY);
 	void printTo(ostream &s);
 
-	Vector<Couche<int>> couches;
+	Vector<Layer<int>> couches;
 private:
 	
 };
 
-Canevas::Canevas()
+Caneva::Caneva()
 {
-	couches += new Couche<int>();
-	couches += new Couche<int>();
-	couches += new Couche<int>();
+	couches += new Layer<int>();
+	couches += new Layer<int>();
+	couches += new Layer<int>();
 
 	couches[0]->changeState(ACTIVE);
 }
 
-Canevas::~Canevas()
+Caneva::~Caneva()
 {
 }
 
-bool Canevas::reset()
+bool Caneva::reset()
 {
 	for (int i = 0; i < couches.getSize(); i++)
 	{
@@ -59,7 +59,7 @@ bool Canevas::reset()
 	return true;
 }
 
-bool Canevas::resetLayer(int index)
+bool Caneva::resetLayer(int index)
 {
 
 	if (index < 0 || index > couches.getSize() - 1) { return false; }
@@ -75,7 +75,7 @@ bool Canevas::resetLayer(int index)
 	return true;
 }
 
-bool Canevas::enableLayer(int index)
+bool Caneva::enableLayer(int index)
 {
 	if (index < 0 || index > couches.getSize() - 1) { return false; }
 
@@ -95,7 +95,7 @@ bool Canevas::enableLayer(int index)
 	return true;
 }
 
-bool Canevas::disableLayer(int index)
+bool Caneva::disableLayer(int index)
 {
 	if (index < 0 || index > couches.getSize() - 1) { return false; }
 
@@ -104,7 +104,7 @@ bool Canevas::disableLayer(int index)
 	return true;
 }
 
-bool Canevas::addElement(int *element)
+bool Caneva::addElement(int *element)
 {
 	if (element == NULL) { return false; }
 
@@ -122,7 +122,7 @@ bool Canevas::addElement(int *element)
 	return true;
 }
 
-bool Canevas::removeElement(int index)
+bool Caneva::removeElement(int index)
 {
 	for (int i = 0; i < couches.getSize(); i++)
 	{
@@ -144,7 +144,7 @@ bool Canevas::removeElement(int index)
 	return true;
 }
 
-double Canevas::area()
+double Caneva::area()
 {
 	float totalArea = 0;
 
@@ -156,7 +156,7 @@ double Canevas::area()
 	return totalArea;
 }
 
-bool Canevas::translate(int deltaX, int deltaY)
+bool Caneva::translate(int deltaX, int deltaY)
 {
 	for (int i = 0; i < couches.getSize(); i++)
 	{
@@ -168,7 +168,7 @@ bool Canevas::translate(int deltaX, int deltaY)
 	return true;
 }
 
-void Canevas::printTo(ostream &s)
+void Caneva::printTo(ostream &s)
 {
 	for (int i = 0; i < couches.getSize(); i++)
 	{

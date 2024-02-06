@@ -1,7 +1,7 @@
 
 #include <iostream>
 
-#include "canevas.h"
+#include "caneva.h"
 
 using namespace std;
 

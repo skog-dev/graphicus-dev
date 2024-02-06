@@ -8,11 +8,11 @@
 #define ACTIVE 1
 
 template <class O>
-class Couche
+class Layer
 {
 public:
-	Couche();
-	virtual ~Couche();
+	Layer();
+	virtual ~Layer();
 
 	double totalArea();
 	bool translate(int x2, int y2);
@@ -33,16 +33,16 @@ private:
 };
 
 template <class O>
-Couche<O>::Couche()
+Layer<O>::Layer()
 {
 	state = INITIALISE;
 }
 
 template <class O>
-Couche<O>::~Couche() {}
+Layer<O>::~Layer() {}
 
 template <class O>
-double Couche<O>::totalArea()
+double Layer<O>::totalArea()
 {
 	float totalArea = 0;
 
@@ -58,7 +58,7 @@ double Couche<O>::totalArea()
 }
 
 template <class O>
-bool Couche<O>::translate(int x2, int y2)
+bool Layer<O>::translate(int x2, int y2)
 {
 	for (int i = 0; i < vector.getSize(); i++)
 	{
@@ -73,7 +73,7 @@ bool Couche<O>::translate(int x2, int y2)
 }
 
 template <class O>
-bool Couche<O>::reset()
+bool Layer<O>::reset()
 {
 	vector.purge();
 
@@ -84,7 +84,7 @@ bool Couche<O>::reset()
 
 
 template <class O>
-void Couche<O>::printLayer()
+void Layer<O>::printLayer()
 {
 	if (vector.isEmpty()) std::cout << "Couche: vide" << std::endl;
 
@@ -96,26 +96,26 @@ void Couche<O>::printLayer()
 }
 
 template <class O>
-int Couche<O>::getState() { return state; }
+int Layer<O>::getState() { return state; }
 
 template <class O>
-O *Couche<O>::getElement(int index) { return vector[index]; }
+O *Layer<O>::getElement(int index) { return vector[index]; }
 
 template <class O>
-bool Couche<O>::addElement(O *element)
+bool Layer<O>::addElement(O *element)
 {
 	vector += element;
 	return true;
 }
 
 template <class O>
-O *Couche<O>::removeElement(int index)
+O *Layer<O>::removeElement(int index)
 {
 	return vector.removeElement(index);
 }
 
 template <class O>
-bool Couche<O>::changeState(int new_state)
+bool Layer<O>::changeState(int new_state)
 {
 	state = new_state;
 	return true;
