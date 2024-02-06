@@ -1,13 +1,13 @@
 main: main.o
-	g++ -o main main.o
+	g++ -o main.out main.o
 
-main.o: main.cpp vector.h 
+main.o: main.cpp vector.h couche.h 
 	g++ -c main.cpp
 
 dev:
 	make
-	./main
+	./main.out
 
 clean:
 	rm -f *.o
-	rm -f main
+	rm -f *.out

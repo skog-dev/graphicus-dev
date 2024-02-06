@@ -1,19 +1,27 @@
 
 #include <iostream>
 
-#include "vector.h"
+#include "couche.h"
 
 using namespace std;
 
 int main() {
 
-    Vector<float> vector(2);
+    Couche<int> couche;
 
-    vector += new float(1.5);
-    vector += new float(3.14);
-    vector += new float(5.2);
+    couche.addElement(new int(1));
+    couche.addElement(new int(2));
+    couche.addElement(new int(3));
 
-    cout << vector << endl;
+    couche.printLayer();
+
+    cout << "Resetting the layer" << endl;
+
+    couche.reset();
+
+    cout << "Reset successful" << endl;
+
+    couche.printLayer();
 
     return 0;
 }
