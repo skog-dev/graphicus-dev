@@ -28,49 +28,6 @@ public:
     O *operator[](int index);
     bool operator+=(O *element);
 
-    friend std::ostream& operator<<(std::ostream &s, Vector<O> &vector) {
-        vector.printTo(s);
-        return s;
-    }
-
-    friend std::ofstream& operator<<(std::ofstream &s, Vector<O> &vector) {
-        vector.printTo(s);
-        return s;
-    }
-
-    friend std::ostringstream& operator<<(std::ostringstream &s, Vector<O> &vector) {
-        vector.printTo(s);
-        return s;
-    }
-
-
-    friend std::istream& operator>>(std::istream &s, Vector<O> &vector) {
-        for (int i = 0; i < vector.capacity; i++) {
-            O *element;
-            s >> element;
-            vector.addElement(element);
-        }
-        return s;
-    }
-
-    friend std::ifstream& operator>>(std::ifstream &s, Vector<O> &vector) {
-        for (int i = 0; i < vector.capacity; i++) {
-            O *element;
-            s >> element;
-            vector.addElement(element);
-        }
-        return s;
-    }
-
-    friend std::istringstream& operator>>(std::istringstream &s, Vector<O> &vector) {
-        for (int i = 0; i < vector.capacity; i++) {
-            O *element;
-            s >> element;
-            vector.addElement(element);
-        }
-        return s;
-    }
-
     void operator++(); 
     void operator--();
 
@@ -222,8 +179,55 @@ bool Vector<O>::operator+=(O *element)
 }
 
 template <class O>
+std::ostream& operator<<(std::ostream &s, Vector<O> &vector) {
+    vector.printTo(s);
+    return s;
+}
+
+template <class O>
+std::ofstream& operator<<(std::ofstream &s, Vector<O> &vector) {
+    vector.printTo(s);
+    return s;
+}
+
+template <class O>
+std::ostringstream& operator<<(std::ostringstream &s, Vector<O> &vector) {
+    vector.printTo(s);
+    return s;
+}
+
+template <class O>
+std::istream& operator>>(std::istream &s, Vector<O> &vector) {
+    for (int i = 0; i < vector.capacity; i++) {
+        O *element;
+        s >> element;
+        vector.addElement(element);
+    }
+    return s;
+}
+
+template <class O>
+std::ifstream& operator>>(std::ifstream &s, Vector<O> &vector) {
+    for (int i = 0; i < vector.capacity; i++) {
+        O *element;
+        s >> element;
+        vector.addElement(element);
+    }
+    return s;
+}
+
+template <class O>
+std::istringstream& operator>>(std::istringstream &s, Vector<O> &vector) {
+    for (int i = 0; i < vector.capacity; i++) {
+        O *element;
+        s >> element;
+        vector.addElement(element);
+    }
+    return s;
+}
+
+template <class O>
 void Vector<O>::operator++() { if (current < capacity) current++; }
 
 template <class O>
 void Vector<O>::operator--() { if (current > 0)current--; }
-
