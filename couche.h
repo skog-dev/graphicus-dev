@@ -29,29 +29,28 @@ public:
 
 private:
 	Vector<O> vector;
-	int *state;
+	int state;
 };
 
 template <class O>
 Couche<O>::Couche()
 {
-	state = new int;
-	*state = INITIALISE;
+	state = INITIALISE;
 }
 
 template <class O>
-Couche<O>::~Couche() { delete state; }
+Couche<O>::~Couche() {}
 
 template <class O>
 double Couche<O>::totalArea()
 {
 	float totalArea = 0;
 
-	for (int i = 0; i < vector.getTaille(); i++)
+	for (int i = 0; i < vector.getSize(); i++)
 	{
 		if (vector[i] != nullptr)
 		{
-			totalArea += vector[i]->aire();
+			totalArea += *vector[i];
 		}
 	}
 
@@ -61,11 +60,12 @@ double Couche<O>::totalArea()
 template <class O>
 bool Couche<O>::translate(int x2, int y2)
 {
-	for (int i = 0; i < vector.getTaille(); i++)
+	for (int i = 0; i < vector.getSize(); i++)
 	{
 		if (vector[i] != nullptr)
 		{
-			vector[i]->translater(x2, y2);
+			// TODO: Fix this
+			// vector[i]->translate(x2, y2);
 		}
 	}
 
@@ -77,7 +77,7 @@ bool Couche<O>::reset()
 {
 	vector.purge();
 
-	*state = INITIALISE;
+	state = INITIALISE;
 
 	return true;
 }
@@ -96,7 +96,7 @@ void Couche<O>::printLayer()
 }
 
 template <class O>
-int Couche<O>::getState() { return *state; }
+int Couche<O>::getState() { return state; }
 
 template <class O>
 O *Couche<O>::getElement(int index) { return vector[index]; }

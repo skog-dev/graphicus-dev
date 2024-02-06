@@ -29,13 +29,17 @@ public:
 	bool translate(int deltaX, int deltaY);
 	void printTo(ostream &s);
 
-private:
 	Vector<Couche<int>> couches;
+private:
+	
 };
 
 Canevas::Canevas()
 {
 	couches += new Couche<int>();
+	couches += new Couche<int>();
+	couches += new Couche<int>();
+
 	couches[0]->changeState(ACTIVE);
 }
 
@@ -158,7 +162,7 @@ bool Canevas::translate(int deltaX, int deltaY)
 	{
 		if (couches[i]->getState() == ACTIVE) { couches[i]->translate(deltaX, deltaY); }
 
-		if (i == MAX_COUCHES - 1) { return false; }
+		if (i == couches.getSize() - 1) { return false; }
 	}
 
 	return true;
@@ -166,27 +170,21 @@ bool Canevas::translate(int deltaX, int deltaY)
 
 void Canevas::printTo(ostream &s)
 {
-	for (int i = 0; i < MAX_COUCHES; i++)
+	for (int i = 0; i < couches.getSize(); i++)
 	{
 		cout << "----- Couche " << i << " -----" << endl;
-		cout << "État: ";
+		cout << "État: " << couches[i]->getState() << endl;
 
-		if (couches[i]->getState() == INITIALISE)
-		{
-			cout << "Initialisée" << endl;
-		}
+		if (couches[i]->getState() == INITIALISE) { cout << "Initialisée" << endl; }
 
-		if (couches[i]->getState() == ACTIVE)
-		{
-			cout << "Active" << endl;
-		}
+		if (couches[i]->getState() == ACTIVE) { cout << "Active" << endl; }
 
-		if (couches[i]->getState() == INACTIVE)
-		{
-			cout << "Inactive" << endl;
-		}
+		if (couches[i]->getState() == INACTIVE) { cout << "Inactive" << endl; }
+
 		couches[i]->printLayer();
 	}
+
+	cout << endl;
 }
 
 
