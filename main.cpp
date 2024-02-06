@@ -7,11 +7,11 @@ using namespace std;
 
 int main() {
 
-    Vector<int> vector(2);
+    Vector<float> vector(2);
 
-    vector += new int(1);
-    vector += new int(2);
-    vector += new int(3);
+    vector += new float(1.5);
+    vector += new float(3.14);
+    vector += new float(5.2);
 
     cout << vector << endl;
 
