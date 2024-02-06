@@ -1,13 +1,13 @@
 #include <iostream>
-#define COUCHE_H
+#define LAYER_H
 
+#include "shape.h"
 #include "vector.h"
 
 #define INITIALISE -1
 #define INACTIVE 0
 #define ACTIVE 1
 
-template <class O>
 class Layer
 {
 public:
@@ -16,33 +16,32 @@ public:
 
 	double totalArea();
 	bool translate(int x2, int y2);
-	
-	bool reset();
-	void printLayer();
 
-	O *getElement(int index);
-	O *removeElement(int index);
-	bool addElement(O *element);
+	bool reset();
+	// void printLayer();
+
+	Shape* getElement(int index);
+	Shape* removeElement(int index);
+	bool addElement(Shape* element);
 
 	bool changeState(int state);
 	int getState();
 
+	int getSize();
+
 private:
-	Vector<O> vector;
+	Vector<Shape> vector;
 	int state;
 };
 
-template <class O>
-Layer<O>::Layer()
+Layer::Layer()
 {
 	state = INITIALISE;
 }
 
-template <class O>
-Layer<O>::~Layer() {}
+Layer::~Layer() {}
 
-template <class O>
-double Layer<O>::totalArea()
+double Layer::totalArea()
 {
 	float totalArea = 0;
 
@@ -50,15 +49,14 @@ double Layer<O>::totalArea()
 	{
 		if (vector[i] != nullptr)
 		{
-			totalArea += *vector[i];
+			totalArea += vector[i]->area();
 		}
 	}
 
 	return totalArea;
 }
 
-template <class O>
-bool Layer<O>::translate(int x2, int y2)
+bool Layer::translate(int x2, int y2)
 {
 	for (int i = 0; i < vector.getSize(); i++)
 	{
@@ -72,8 +70,7 @@ bool Layer<O>::translate(int x2, int y2)
 	return true;
 }
 
-template <class O>
-bool Layer<O>::reset()
+bool Layer::reset()
 {
 	vector.purge();
 
@@ -82,41 +79,38 @@ bool Layer<O>::reset()
 	return true;
 }
 
-
-template <class O>
-void Layer<O>::printLayer()
+/*
+void Layer::printLayer()
 {
 	if (vector.isEmpty()) std::cout << "Couche: vide" << std::endl;
 
 	for (int i = 0; i < vector.getCapacity(); i++)
 	{
-		if (vector[i] != nullptr) std::cout << "Element [" << i << "] : " << *vector[i] << std::endl;
+		if (vector[i] != nullptr) std::cout << "Element [" << i << "] : " << vector[i]->printTo() << std::endl;
 		else std::cout << "Element [" << i << "] : vide" << std::endl;
 	}
 }
+*/
 
-template <class O>
-int Layer<O>::getState() { return state; }
+int Layer::getState() { return state; }
 
-template <class O>
-O *Layer<O>::getElement(int index) { return vector[index]; }
+Shape* Layer::getElement(int index) { return vector[index]; }
 
-template <class O>
-bool Layer<O>::addElement(O *element)
+bool Layer::addElement(Shape* element)
 {
 	vector += element;
 	return true;
 }
 
-template <class O>
-O *Layer<O>::removeElement(int index)
+Shape* Layer::removeElement(int index)
 {
 	return vector.removeElement(index);
 }
 
-template <class O>
-bool Layer<O>::changeState(int new_state)
+bool Layer::changeState(int new_state)
 {
 	state = new_state;
 	return true;
 }
+
+int Layer::getSize() { return vector.getSize(); }

@@ -29,16 +29,14 @@ public:
 	bool translate(int deltaX, int deltaY);
 	void printTo(ostream &s);
 
-	Vector<Layer<int>> couches;
+	Vector<Layer> couches;
 private:
 	
 };
 
 Caneva::Caneva()
 {
-	couches += new Layer<int>();
-	couches += new Layer<int>();
-	couches += new Layer<int>();
+	couches += new Layer();
 
 	couches[0]->changeState(ACTIVE);
 }
