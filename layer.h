@@ -18,7 +18,7 @@ public:
 	bool translate(int x2, int y2);
 
 	bool reset();
-	// void printLayer();
+	void printLayer();
 
 	Shape* getElement(int index);
 	Shape* removeElement(int index);
@@ -79,18 +79,18 @@ bool Layer::reset()
 	return true;
 }
 
-/*
+
 void Layer::printLayer()
 {
 	if (vector.isEmpty()) std::cout << "Couche: vide" << std::endl;
 
 	for (int i = 0; i < vector.getCapacity(); i++)
 	{
-		if (vector[i] != nullptr) std::cout << "Element [" << i << "] : " << vector[i]->printTo() << std::endl;
+		if (vector[i] != nullptr) { std::cout << "Element [" << i << "] : "; vector[i]->printTo(std::cout); std::cout << std::endl; }
 		else std::cout << "Element [" << i << "] : vide" << std::endl;
 	}
 }
-*/
+
 
 int Layer::getState() { return state; }
 

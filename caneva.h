@@ -22,7 +22,7 @@ public:
 	bool enableLayer(int index);
 	bool disableLayer(int index);
 
-	bool addElement(int *element);
+	bool addElement(Shape *element);
 	bool removeElement(int index);
 
 	double area();
@@ -102,7 +102,7 @@ bool Caneva::disableLayer(int index)
 	return true;
 }
 
-bool Caneva::addElement(int *element)
+bool Caneva::addElement(Shape *element)
 {
 	if (element == NULL) { return false; }
 
